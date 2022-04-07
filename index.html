@@ -24,6 +24,7 @@
           alt="Vector logo Around the U.S."
         />
       </header>
+
       <main class="main">
         <section class="profile">
           <img
@@ -63,8 +64,40 @@
               />
             </svg>
           </button>
+          <div class="profile__form form form_visibility_none">
+            <div class="form__overlay"></div>
+            <form class="form__content">
+              <h2 class="form__title">Edit profile</h2>
+              <input
+                class="form__field"
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+              />
+              <input
+                class="form__field"
+                type="text"
+                name="tag"
+                placeholder="Enter who you are"
+              />
+              <button class="form__button" type="button">Save</button>
+            </form>
+            <svg
+              class="form__close-icon"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M28.5708 0.286517L16 12.8573L3.42918 0.286515L0.286486 3.42921L12.8573 16L0.286486 28.5708L3.42918 31.7135L16 19.1427L28.5708 31.7135L31.7135 28.5708L19.1427 16L31.7135 3.42921L28.5708 0.286517Z"
+              />
+            </svg>
+          </div>
         </section>
       </main>
     </dev>
+
+    <script src="./script/script.js"></script>
   </body>
 </html>
