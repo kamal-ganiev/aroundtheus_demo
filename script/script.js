@@ -30,3 +30,4 @@ function formSave() {
 }
 
 formSaveButton.addEventListener("click", formSave);
+formSaveButton.addEventListener("click", formRoll);
