@@ -1,0 +1,130 @@
+.profile {
+  margin: 0 auto 50px;
+  max-width: 880px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.profile__avatar {
+  border-radius: 50%;
+  margin: 0 50px 0 0;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    "name button"
+    "tag .";
+}
+
+.profile__name {
+  grid-area: name;
+  margin: 0 18px 0 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+}
+
+.profile__tag {
+  grid-area: tag;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 16px auto 0 0;
+}
+
+.profile__edit-button {
+  margin: auto 0 9px;
+  grid-area: button;
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  background-color: #000;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__edit-button:hover {
+  color: #999999;
+  border-color: #999999;
+  fill: #999999;
+}
+
+.profile__add-button {
+  margin: 0 0 0 auto;
+  width: 150px;
+  height: 50px;
+  fill: #fff;
+  background-color: #000;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.profile__add-button:hover {
+  border-color: #999999;
+  fill: #999999;
+}
+
+@media screen and (max-width: 882px) {
+  .profile {
+    margin-bottom: 36px;
+    max-width: 282px;
+    flex-direction: column;
+  }
+
+  .profile__avatar {
+    margin: 0 auto 30px;
+  }
+
+  .profile__info {
+    grid-template-areas:
+      "name button"
+      "tag tag";
+  }
+
+  .profile__name {
+    margin-right: 10px;
+    font-size: 22px;
+    line-height: 27px;
+    text-align: center;
+  }
+
+  .profile__edit-button {
+    margin-bottom: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 0;
+  }
+
+  .profile__edit-button_icon {
+    width: 7.5px;
+    height: 7.5px;
+  }
+
+  .profile__tag {
+    margin: 9px auto 36px;
+  }
+
+  .profile__add-button {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .profile__add-button_icon {
+    width: 16px;
+    height: 16px;
+  }
+}
