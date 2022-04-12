@@ -8,26 +8,24 @@ let formTag = document.querySelector("input[name='tag']");
 let profileName = document.querySelector(".profile__name");
 let profileTag = document.querySelector(".profile__tag");
 
-formName.value = profileName.textContent;
-formTag.value = profileTag.textContent;
-
 function formUnroll() {
-  formShow.classList.remove("form_visibility_none");
+  formShow.classList.remove("form_not-active");
+  formName.value = profileName.textContent;
+  formTag.value = profileTag.textContent;
 }
 
 function formRoll() {
-  formShow.classList.add("form_visibility_none");
+  formShow.classList.add("form_not-active");
 }
 
 formButton.addEventListener("click", formUnroll);
 formClose.addEventListener("click", formRoll);
 
-let formSaveButton = document.querySelector(".form__button");
-
-function formSave() {
+function formSave(event) {
   profileName.textContent = formName.value;
   profileTag.textContent = formTag.value;
+  event.preventDefault();
+  formRoll();
 }
 
-formSaveButton.addEventListener("click", formSave);
-formSaveButton.addEventListener("click", formRoll);
+document.querySelector(".form__button").addEventListener("click", formSave);

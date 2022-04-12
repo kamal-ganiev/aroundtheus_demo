@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.form_visibility_none {
+.form_not-active {
   display: none;
 }
 
