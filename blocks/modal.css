@@ -1,70 +1,64 @@
-.form {
+.modal {
   display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
 }
 
-.form_not-active {
+.modal_not-active {
   display: none;
 }
 
-.form__overlay {
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 50%;
-}
-
-.form__content {
+.modal__content {
   width: 430px;
-  height: 330px;
   z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
   background-color: #fff;
   color: #000;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 15px;
 }
 
-.form__title {
-  margin: 34px 36px 54px;
+.modal__title {
+  margin: 34px 36px 48px;
   align-self: flex-start;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
 }
 
-.form__field {
+.modal__field {
   margin: 0 auto 30px;
   box-sizing: border-box;
   width: 358px;
   height: 27px;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 50%);
-  padding: 0 0 10px;
-  font-family: "Inter";
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0 0 9px;
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
 }
 
-.form__button {
+.modal__button {
   width: 358px;
   height: 50px;
   border: none;
+  border-radius: 2px;
   background-color: #000;
   color: #fff;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -75,11 +69,11 @@
   transition: 0.3s;
 }
 
-.form__button:hover {
+.modal__button:hover {
   opacity: 80%;
 }
 
-.form__close-icon {
+.modal__close-icon {
   fill: #fff;
   width: 40px;
   height: 40px;
@@ -92,29 +86,28 @@
   transition: 0.3s;
 }
 
-.form__close-icon:hover {
-  fill: #999999;
+.modal__close-icon:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 520px) {
-  .form__content {
+  .modal__content {
     width: 282px;
-    height: 322px;
   }
 
-  .form__title {
+  .modal__title {
     margin: 25px 22px 76px;
     font-size: 18px;
     line-height: 22px;
   }
 
-  .form__field {
+  .modal__field {
     width: 238px;
     height: 26px;
     padding-bottom: 9px;
   }
 
-  .form__button {
+  .modal__button {
     margin: 16px auto 25px;
     width: 238px;
     height: 46px;
@@ -122,7 +115,7 @@
     line-height: 17px;
   }
 
-  .form__close-icon {
+  .modal__close-icon {
     width: 26px;
     height: 26px;
     transform: translate(115px, -201px);

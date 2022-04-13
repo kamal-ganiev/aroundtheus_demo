@@ -16,7 +16,7 @@
     <title>Around the U.S.</title>
   </head>
   <body class="body">
-    <dev class="page">
+    <div class="page">
       <header class="header">
         <img
           class="header__logo"
@@ -35,81 +35,24 @@
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <p class="profile__tag">Explorer</p>
-            <button class="profile__edit-button">
-              <svg
-                class="profile__edit-button_icon"
-                width="10px"
-                height="10px"
-                viewBox="0 0 10 10"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  class="profile__edit-button_icon-path"
-                  d="M10 1.32827L2.60377 8.7666L1.28302 7.41936L8.66038 0L10 1.32827ZM0 10L1.96226 9.41177L0.584906 8.08349L0 10Z"
-                />
-              </svg>
-            </button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
-          <button class="profile__add-button">
-            <svg
-              class="profile__add-button_icon"
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                class="profile__add-button_icon-path"
-                d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z"
-              />
-            </svg>
-          </button>
-          <div class="profile__form form form_not-active">
-            <div class="form__overlay"></div>
-            <form class="form__content">
-              <h2 class="form__title">Edit profile</h2>
-              <input
-                class="form__field"
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-              />
-              <input
-                class="form__field"
-                type="text"
-                name="tag"
-                placeholder="Enter who you are"
-              />
-              <button class="form__button" type="submit">Save</button>
-            </form>
-            <svg
-              class="form__close-icon"
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M28.5708 0.286517L16 12.8573L3.42918 0.286515L0.286486 3.42921L12.8573 16L0.286486 28.5708L3.42918 31.7135L16 19.1427L28.5708 31.7135L31.7135 28.5708L19.1427 16L31.7135 3.42921L28.5708 0.286517Z"
-              />
-            </svg>
-          </div>
+          <button class="profile__add-button" type="button"></button>
         </section>
 
         <section class="elements">
           <ul class="elements__list">
             <li class="elements__item">
-              <figure class="element">
+              <div class="element">
                 <img
                   class="element__image"
                   src="./images/elements/__image_chicago.jpg"
                   alt="Chicago Skyline"
                 />
-                <figcaption class="element__title">
-                  Chicago, Illinois
-                </figcaption>
+                <h2 class="element__title">Chicago, Illinois</h2>
                 <svg
                   class="element__like-button"
+                  type="button"
                   viewBox="0 0 21 19"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -117,21 +60,20 @@
                     d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
                   />
                 </svg>
-              </figure>
+              </div>
             </li>
 
             <li class="elements__item">
-              <figure class="element">
+              <div class="element">
                 <img
                   class="element__image"
                   src="./images/elements/__image_indianapolis.jpg"
                   alt="Indianapolis Skyline"
                 />
-                <figcaption class="element__title">
-                  Indianapolis, Indiana
-                </figcaption>
+                <h2 class="element__title">Indianapolis, Indiana</h2>
                 <svg
                   class="element__like-button"
+                  type="button"
                   viewBox="0 0 21 19"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -139,21 +81,20 @@
                     d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
                   />
                 </svg>
-              </figure>
+              </div>
             </li>
 
             <li class="elements__item">
-              <figure class="element">
+              <div class="element">
                 <img
                   class="element__image"
                   src="./images/elements/__image_philadelphia.jpg"
                   alt="Philadelphia Skyline"
                 />
-                <figcaption class="element__title">
-                  Philadelphia, Pennsylvania
-                </figcaption>
+                <h2 class="element__title">Philadelphia, Pennsylvania</h2>
                 <svg
                   class="element__like-button"
+                  type="button"
                   viewBox="0 0 21 19"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -161,21 +102,20 @@
                     d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
                   />
                 </svg>
-              </figure>
+              </div>
             </li>
 
             <li class="elements__item">
-              <figure class="element">
+              <div class="element">
                 <img
                   class="element__image"
                   src="./images/elements/__image_pittsburgh.jpg"
                   alt="Pittsburgh Skyline"
                 />
-                <figcaption class="element__title">
-                  Pittsburgh, Pennsylvania
-                </figcaption>
+                <h2 class="element__title">Pittsburgh, Pennsylvania</h2>
                 <svg
                   class="element__like-button"
+                  type="button"
                   viewBox="0 0 21 19"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -183,19 +123,20 @@
                     d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
                   />
                 </svg>
-              </figure>
+              </div>
             </li>
 
             <li class="elements__item">
-              <figure class="element">
+              <div class="element">
                 <img
                   class="element__image"
                   src="./images/elements/__image_portland.jpg"
                   alt="Portland Skyline"
                 />
-                <figcaption class="element__title">Portland, Oregon</figcaption>
+                <h2 class="element__title">Portland, Oregon</h2>
                 <svg
                   class="element__like-button"
+                  type="button"
                   viewBox="0 0 21 19"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -203,21 +144,20 @@
                     d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
                   />
                 </svg>
-              </figure>
+              </div>
             </li>
 
             <li class="elements__item">
-              <figure class="element">
+              <div class="element">
                 <img
                   class="element__image"
                   src="./images/elements/__image_seatle.jpg"
                   alt="Seattle Skyline"
                 />
-                <figcaption class="element__title">
-                  Seattle, Washington
-                </figcaption>
+                <h2 class="element__title">Seattle, Washington</h2>
                 <svg
                   class="element__like-button"
+                  type="button"
                   viewBox="0 0 21 19"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -225,7 +165,7 @@
                     d="M19.3764 9.78586C21.5412 7.54338 21.5412 3.90213 19.3764 1.68186C17.2115 -0.560619 13.6964 -0.560619 11.5315 1.68186L10.4812 2.792L9.43098 1.70406C7.26614 -0.560619 3.75096 -0.560619 1.60755 1.68186C0.557285 2.76979 0 4.21297 0 5.74496C0 7.27695 0.578719 8.72013 1.60755 9.80806L10.4812 19L19.3764 9.78586ZM1.37178 5.74496C1.37178 4.59042 1.80046 3.52469 2.59352 2.72539C3.40801 1.88168 4.45828 1.45983 5.50855 1.45983C6.55882 1.45983 7.60909 1.88168 8.42358 2.72539L10.4812 4.83465L12.5389 2.70318C14.1465 1.03798 16.7829 1.03798 18.369 2.70318C19.1406 3.50248 19.5907 4.56821 19.5907 5.72276C19.5907 6.8773 19.162 7.94303 18.369 8.74233L10.4812 16.9351L2.59352 8.76453C1.82189 7.94303 1.37178 6.8773 1.37178 5.74496Z"
                   />
                 </svg>
-              </figure>
+              </div>
             </li>
           </ul>
         </section>
@@ -234,7 +174,40 @@
       <footer class="footer">
         <p class="footer__copyrights">© 2022 Around The U.S.</p>
       </footer>
-    </dev>
+
+      <div class="modal modal_not-active">
+        <form class="modal__content" name="form">
+          <h2 class="modal__title">Edit profile</h2>
+          <input
+            class="modal__field"
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+          <input
+            class="modal__field"
+            type="text"
+            name="tag"
+            placeholder="Enter who you are"
+            required
+          />
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+        <svg
+          class="modal__close-icon"
+          type="button"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M28.5708 0.286517L16 12.8573L3.42918 0.286515L0.286486 3.42921L12.8573 16L0.286486 28.5708L3.42918 31.7135L16 19.1427L28.5708 31.7135L31.7135 28.5708L19.1427 16L31.7135 3.42921L28.5708 0.286517Z"
+          />
+        </svg>
+      </div>
+    </div>
 
     <script src="./script/script.js"></script>
   </body>

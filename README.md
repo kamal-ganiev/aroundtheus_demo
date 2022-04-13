@@ -1,10 +1,22 @@
-# Project 4: Around The U.S.
+# Around The U.S.
 
 ### Overview
 
 - Figma
 - Images
 - Website
+
+**Technologies**
+
+- Grid boxes
+- Flex boxes
+- Adaptive Web Design
+- JavaScript
+
+**Functionality**
+
+- Profile name change
+- Profile tag change
 
 **Figma**
 

@@ -1,25 +1,28 @@
 .element {
   width: 282px;
-  height: 361px;
   background-color: #fff;
   margin: 0;
   border-radius: 10px;
-  position: relative;
   overflow: hidden;
+  display: grid;
+  grid-template-areas:
+    "image image"
+    "title button";
 }
 
 .element__image {
   display: block;
-  width: 100%;
+  width: 282px;
   height: 282px;
   margin: 0;
   object-fit: cover;
+  grid-area: image;
 }
 
 .element__title {
   width: 220px;
   margin: 25px auto 25px 21px;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -27,18 +30,18 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: title;
 }
 
 .element__like-button {
-  position: absolute;
-  right: 18px;
-  bottom: 30px;
+  margin: 30px 18px 30px auto;
   width: 21px;
   height: 19px;
   cursor: pointer;
   transition: 0.3s;
+  grid-area: button;
 }
 
 .element__like-button:hover {
-  fill: #999999;
+  opacity: 0.5;
 }
