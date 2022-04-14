@@ -36,6 +36,11 @@
   line-height: 29px;
 }
 
+.modal__form {
+  margin: 0 auto;
+  width: 358px;
+}
+
 .modal__field {
   margin: 0 auto 30px;
   box-sizing: border-box;
@@ -73,20 +78,25 @@
   opacity: 80%;
 }
 
-.modal__close-icon {
+.modal__close-button {
   fill: #fff;
   width: 40px;
   height: 40px;
   z-index: 5;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(215px, -205px) rotate(180deg);
   cursor: pointer;
   transition: 0.3s;
+  background-image: url("../images/modal/__close-button.svg");
+  background-position: center;
+  background-size: cover;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.modal__close-icon:hover {
+.modal__close-button:hover {
   opacity: 0.6;
 }
 
@@ -99,6 +109,10 @@
     margin: 25px 22px 76px;
     font-size: 18px;
     line-height: 22px;
+  }
+
+  .modal__form {
+    width: 238px;
   }
 
   .modal__field {
@@ -115,7 +129,7 @@
     line-height: 17px;
   }
 
-  .modal__close-icon {
+  .modal__close-button {
     width: 26px;
     height: 26px;
     transform: translate(115px, -201px);

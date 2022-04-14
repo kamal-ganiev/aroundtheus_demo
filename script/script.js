@@ -1,6 +1,6 @@
 let formShow = document.querySelector(".modal");
 let formButton = document.querySelector(".profile__edit-button");
-let formClose = document.querySelector(".modal__close-icon");
+let formClose = document.querySelector(".modal__close-button");
 
 let formName = document.querySelector("input[name='name']");
 let formTag = document.querySelector("input[name='tag']");
@@ -22,10 +22,10 @@ formButton.addEventListener("click", formUnroll);
 formClose.addEventListener("click", formRoll);
 
 function formSave(event) {
+  event.preventDefault();
   profileName.textContent = formName.value;
   profileTag.textContent = formTag.value;
-  event.preventDefault();
   formRoll();
 }
 
-document.querySelector(".modal__button").addEventListener("click", formSave);
+document.querySelector(".modal__form").addEventListener("click", formSave);

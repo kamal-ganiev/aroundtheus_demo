@@ -40,6 +40,9 @@
   cursor: pointer;
   transition: 0.3s;
   grid-area: button;
+  background-image: url("../images/elements/__like-button.svg");
+  border: none;
+  background-color: #fff;
 }
 
 .element__like-button:hover {
