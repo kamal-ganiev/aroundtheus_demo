@@ -28,4 +28,4 @@ function formSave(event) {
   formRoll();
 }
 
-document.querySelector(".modal__form").addEventListener("click", formSave);
+document.querySelector(".modal__form").addEventListener("submit", formSave);

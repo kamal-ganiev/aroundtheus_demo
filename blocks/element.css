@@ -42,7 +42,7 @@
   grid-area: button;
   background-image: url("../images/elements/__like-button.svg");
   border: none;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .element__like-button:hover {
