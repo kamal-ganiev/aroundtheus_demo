@@ -30,7 +30,8 @@ formButton.addEventListener("click", function () {
   formTag.placeholder = "Enter who you are";
   document
     .querySelector(".modal__form")
-    .addEventListener("submit", editForm(evt));
+    .addEventListener("submit", editForm)
+    .removeEventListener("submit", editForm);
 });
 
 ////////// Form close button //////////
@@ -155,6 +156,37 @@ function addCard(evt) {
   elementsItem.appendChild(element);
 
   elementList.append(elementsItem);
+
+  const removeButton = document.querySelectorAll(".element__remove-button");
+  removeButton.forEach((button) => {
+    button.addEventListener("click", function (evt) {
+      const eventTarget = evt.target;
+      eventTarget.closest("li").remove();
+    });
+  });
+
+  const likeButton = document.querySelectorAll(".element__like-button");
+  likeButton.forEach((like) => {
+    like.addEventListener("click", function () {
+      like.classList.toggle("element__like-button_active");
+    });
+  });
+
+  const imageOverlay = document.querySelector(".element__image-overlay");
+  const imageZoom = document.querySelector(".element__image-zoom");
+  const imageClose = document.querySelector(".element__close-button");
+  const imageCard = document.querySelectorAll(".element__image");
+  imageCard.forEach((image) => {
+    image.addEventListener("click", function () {
+      imageOverlay.style.display = "flex";
+      imageZoom.src = image.src;
+      imageZoom.alt = image.alt;
+      imageClose.addEventListener("click", function () {
+        imageOverlay.style.display = "none";
+      });
+    });
+  });
+
   formRoll();
 }
 
@@ -170,8 +202,8 @@ document
     modalButton.textContent = "Create";
     document
       .querySelector(".modal__form")
-      .addEventListener("submit", addCard(evt))
-      .removeEventListener("submit", addCard(evt));
+      .addEventListener("submit", addCard)
+      .removeEventListener("submit", addCard);
   });
 
 ////////// Remove "Trash Can" Button Function //////////
@@ -202,12 +234,10 @@ const imageCard = document.querySelectorAll(".element__image");
 imageCard.forEach((image) => {
   image.addEventListener("click", function () {
     imageOverlay.style.display = "flex";
-    imageOverlay.style.visibility = "visible";
     imageZoom.src = image.src;
     imageZoom.alt = image.alt;
     imageClose.addEventListener("click", function () {
       imageOverlay.style.display = "none";
-      imageOverlay.style.visibility = "hidden";
     });
   });
 });
