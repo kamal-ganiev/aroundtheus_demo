@@ -151,11 +151,11 @@ function addCard(evt) {
   elementTitle.textContent = formName.value;
 
   elementImage.addEventListener("click", function () {
-    imageOverlay.classList.add("element__image-overlay_visible");
+    imageOverlay.classList.add("elements__image-preview_visible");
     imageZoom.src = elementImage.src;
     imageZoom.alt = elementImage.alt;
     imageClose.addEventListener("click", function () {
-      imageOverlay.classList.remove("element__image-overlay_visible");
+      imageOverlay.classList.remove("elements__image-preview_visible");
     });
     imageTitle.textContent = elementImage.alt;
   });
@@ -212,19 +212,19 @@ likeButton.forEach((like) => {
 
 ////////// Image Zoom //////////
 
-const imageOverlay = document.querySelector(".element__image-overlay");
-const imageZoom = document.querySelector(".element__image-zoom");
-const imageClose = document.querySelector(".element__close-button");
+const imageOverlay = document.querySelector(".elements__image-preview");
+const imageZoom = document.querySelector(".elements__image-zoom");
+const imageClose = document.querySelector(".elements__image-close-button");
 const imageCard = document.querySelectorAll(".element__image");
 const cardTitle = document.querySelectorAll(".element__title");
-const imageTitle = document.querySelector(".element__image-title");
+const imageTitle = document.querySelector(".elements__image-description");
 imageCard.forEach((image) => {
   image.addEventListener("click", function () {
-    imageOverlay.classList.add("element__image-overlay_visible");
+    imageOverlay.classList.add("elements__image-preview_visible");
     imageZoom.src = image.src;
     imageZoom.alt = image.alt;
     imageClose.addEventListener("click", function () {
-      imageOverlay.classList.remove("element__image-overlay_visible");
+      imageOverlay.classList.remove("elements__image-preview_visible");
     });
     imageTitle.textContent = image.alt;
   });
