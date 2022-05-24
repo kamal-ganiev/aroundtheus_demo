@@ -117,7 +117,7 @@ initialCards.forEach((card) => {
   createCard(card);
 });
 
-////////// Adding Cards Form //////////
+////////// Adding Cards Function //////////
 
 function addCard(evt) {
   evt.preventDefault();
@@ -132,15 +132,6 @@ function addCard(evt) {
 
   const elementImage = document.createElement("img");
   elementImage.classList.add("element__image");
-
-  elementImage.addEventListener("click", function () {
-    imageOverlay.classList.add("element__image-overlay_visible");
-    imageZoom.src = elementImage.src;
-    imageZoom.alt = element.alt;
-    imageClose.addEventListener("click", function () {
-      imageOverlay.classList.remove("element__image-overlay_visible");
-    });
-  });
 
   const elementLikeButton = document.createElement("button");
   elementLikeButton.classList.add(
@@ -158,6 +149,16 @@ function addCard(evt) {
   elementImage.src = formTag.value;
   elementImage.alt = formName.value;
   elementTitle.textContent = formName.value;
+
+  elementImage.addEventListener("click", function () {
+    imageOverlay.classList.add("element__image-overlay_visible");
+    imageZoom.src = elementImage.src;
+    imageZoom.alt = elementImage.alt;
+    imageClose.addEventListener("click", function () {
+      imageOverlay.classList.remove("element__image-overlay_visible");
+    });
+    imageTitle.textContent = elementImage.alt;
+  });
 
   element.appendChild(elementImage);
   element.appendChild(elementTitle);
@@ -215,6 +216,8 @@ const imageOverlay = document.querySelector(".element__image-overlay");
 const imageZoom = document.querySelector(".element__image-zoom");
 const imageClose = document.querySelector(".element__close-button");
 const imageCard = document.querySelectorAll(".element__image");
+const cardTitle = document.querySelectorAll(".element__title");
+const imageTitle = document.querySelector(".element__image-title");
 imageCard.forEach((image) => {
   image.addEventListener("click", function () {
     imageOverlay.classList.add("element__image-overlay_visible");
@@ -223,5 +226,8 @@ imageCard.forEach((image) => {
     imageClose.addEventListener("click", function () {
       imageOverlay.classList.remove("element__image-overlay_visible");
     });
+    imageTitle.textContent = image.alt;
   });
 });
+
+console.log(cardTitle);
