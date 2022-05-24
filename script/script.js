@@ -10,6 +10,7 @@ let profileName = document.querySelector(".profile__name");
 let profileTag = document.querySelector(".profile__tag");
 
 let modalButton = document.querySelector(".modal__button");
+let modalForm = document.querySelector(".modal__form");
 
 ////////// Profile Edit Form //////////
 
@@ -18,6 +19,7 @@ function editForm(evt) {
   profileName.textContent = formName.value;
   profileTag.textContent = formTag.value;
   formRoll();
+  modalForm.removeEventListener("submit", editForm);
 }
 
 formButton.addEventListener("click", function () {
@@ -28,10 +30,7 @@ formButton.addEventListener("click", function () {
   modalButton.textContent = "Save";
   formName.placeholder = "Enter your name";
   formTag.placeholder = "Enter who you are";
-  document
-    .querySelector(".modal__form")
-    .addEventListener("submit", editForm)
-    .removeEventListener("submit", editForm);
+  modalForm.addEventListener("submit", editForm);
 });
 
 ////////// Form close button //////////
@@ -134,16 +133,27 @@ function addCard(evt) {
   const elementImage = document.createElement("img");
   elementImage.classList.add("element__image");
 
+  elementImage.addEventListener("click", function () {
+    imageOverlay.classList.add("element__image-overlay_visible");
+    imageZoom.src = elementImage.src;
+    imageZoom.alt = element.alt;
+    imageClose.addEventListener("click", function () {
+      imageOverlay.classList.remove("element__image-overlay_visible");
+    });
+  });
+
   const elementLikeButton = document.createElement("button");
   elementLikeButton.classList.add(
     "element__like-button",
     "element__like-button_not-active"
   );
   elementLikeButton.setAttribute("type", "button");
+  elementLikeButton.addEventListener("click", likeClick);
 
   const elementRemoveButton = document.createElement("button");
   elementRemoveButton.classList.add("element__remove-button");
   elementRemoveButton.setAttribute("type", "button");
+  elementRemoveButton.addEventListener("click", removeCard);
 
   elementImage.src = formTag.value;
   elementImage.alt = formName.value;
@@ -157,37 +167,9 @@ function addCard(evt) {
 
   elementList.append(elementsItem);
 
-  const removeButton = document.querySelectorAll(".element__remove-button");
-  removeButton.forEach((button) => {
-    button.addEventListener("click", function (evt) {
-      const eventTarget = evt.target;
-      eventTarget.closest("li").remove();
-    });
-  });
-
-  const likeButton = document.querySelectorAll(".element__like-button");
-  likeButton.forEach((like) => {
-    like.addEventListener("click", function () {
-      like.classList.toggle("element__like-button_active");
-    });
-  });
-
-  const imageOverlay = document.querySelector(".element__image-overlay");
-  const imageZoom = document.querySelector(".element__image-zoom");
-  const imageClose = document.querySelector(".element__close-button");
-  const imageCard = document.querySelectorAll(".element__image");
-  imageCard.forEach((image) => {
-    image.addEventListener("click", function () {
-      imageOverlay.style.display = "flex";
-      imageZoom.src = image.src;
-      imageZoom.alt = image.alt;
-      imageClose.addEventListener("click", function () {
-        imageOverlay.style.display = "none";
-      });
-    });
-  });
-
   formRoll();
+
+  modalForm.removeEventListener("submit", addCard);
 }
 
 document
@@ -200,29 +182,31 @@ document
     formName.placeholder = "Title";
     formTitle.textContent = "New place";
     modalButton.textContent = "Create";
-    document
-      .querySelector(".modal__form")
-      .addEventListener("submit", addCard)
-      .removeEventListener("submit", addCard);
+    modalForm.addEventListener("submit", addCard);
   });
 
 ////////// Remove "Trash Can" Button Function //////////
 
+function removeCard(evt) {
+  const eventTarget = evt.target;
+  eventTarget.closest("li").remove();
+}
+
 const removeButton = document.querySelectorAll(".element__remove-button");
 removeButton.forEach((button) => {
-  button.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.closest("li").remove();
-  });
+  button.addEventListener("click", removeCard);
 });
 
 ////////// Like Button //////////
 
+function likeClick(evt) {
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle("element__like-button_active");
+}
+
 const likeButton = document.querySelectorAll(".element__like-button");
 likeButton.forEach((like) => {
-  like.addEventListener("click", function () {
-    like.classList.toggle("element__like-button_active");
-  });
+  like.addEventListener("click", likeClick);
 });
 
 ////////// Image Zoom //////////
@@ -233,11 +217,11 @@ const imageClose = document.querySelector(".element__close-button");
 const imageCard = document.querySelectorAll(".element__image");
 imageCard.forEach((image) => {
   image.addEventListener("click", function () {
-    imageOverlay.style.display = "flex";
+    imageOverlay.classList.add("element__image-overlay_visible");
     imageZoom.src = image.src;
     imageZoom.alt = image.alt;
     imageClose.addEventListener("click", function () {
-      imageOverlay.style.display = "none";
+      imageOverlay.classList.remove("element__image-overlay_visible");
     });
   });
 });
