@@ -42,109 +42,48 @@
 
         <section class="elements">
           <ul class="elements__list">
-            <!-- <li class="elements__item">
-              <div class="element">
-                <img
-                  class="element__image"
-                  src="./images/elements/__image_chicago.jpg"
-                  alt="Chicago Skyline"
-                />
-                <h2 class="element__title">Chicago, Illinois</h2>
-                <button class="element__like-button" type="button"></button>
-                <button class="element__remove-button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="elements__item">
-              <div class="element">
-                <img
-                  class="element__image"
-                  src="./images/elements/__image_indianapolis.jpg"
-                  alt="Indianapolis Skyline"
-                />
-                <h2 class="element__title">Indianapolis, Indiana</h2>
-                <button class="element__like-button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="elements__item">
-              <div class="element">
-                <img
-                  class="element__image"
-                  src="./images/elements/__image_philadelphia.jpg"
-                  alt="Philadelphia Skyline"
-                />
-                <h2 class="element__title">Philadelphia, Pennsylvania</h2>
-                <button class="element__like-button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="elements__item">
-              <div class="element">
-                <img
-                  class="element__image"
-                  src="./images/elements/__image_pittsburgh.jpg"
-                  alt="Pittsburgh Skyline"
-                />
-                <h2 class="element__title">Pittsburgh, Pennsylvania</h2>
-                <button class="element__like-button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="elements__item">
-              <div class="element">
-                <img
-                  class="element__image"
-                  src="./images/elements/__image_portland.jpg"
-                  alt="Portland Skyline"
-                />
-                <h2 class="element__title">Portland, Oregon</h2>
-                <button class="element__like-button" type="button"></button>
-              </div>
-            </li>
-
-            <li class="elements__item">
-              <div class="element">
-                <img
-                  class="element__image"
-                  src="./images/elements/__image_seatle.jpg"
-                  alt="Seattle Skyline"
-                />
-                <h2 class="element__title">Seattle, Washington</h2>
-                <button class="element__like-button" type="button"></button>
-              </div>
-            </li> -->
+            <!-- Cards are added by the script -->
           </ul>
+
+          <div class="element__image-overlay">
+            <div class="element__image-container">
+              <img class="element__image-zoom" src="" alt="">    
+              <button class="element__close-button" type="button"></button>
+            </div> 
+          </div>
         </section>
+
+        <div class="modal modal_not-active">
+          <div class="modal__content">
+            <h2 class="modal__title"></h2>
+            <form class="modal__form" name="NameTag">
+              <input
+                class="modal__field"
+                type="text"
+                name="name"
+                placeholder=""
+                required
+              />
+              <input
+                class="modal__field"
+                type="text"
+                name="tag"
+                placeholder=""
+                required
+              />
+              <button class="modal__button" type="submit">
+              </button>
+            </form>
+            <button
+              class="modal__close-button"
+              type="button"
+            ></button>
+          </div>
       </main>
 
       <footer class="footer">
         <p class="footer__copyrights">© 2022 Around The U.S.</p>
       </footer>
-
-      <div class="modal modal_not-active">
-        <div class="modal__content">
-          <h2 class="modal__title"></h2>
-          <form class="modal__form" name="NameTag">
-            <input
-              class="modal__field"
-              type="text"
-              name="name"
-              placeholder=""
-              required
-            />
-            <input
-              class="modal__field"
-              type="text"
-              name="tag"
-              placeholder=""
-              required
-            />
-            <button class="modal__button" type="submit"></button>
-          </form>
-          <button class="modal__close-button" type="button"></button>
-        </div>
-      </div>
     </div>
 
     <script src="./script/script.js"></script>
