@@ -178,7 +178,7 @@ document
     formShow.classList.remove("modal_not-active");
     formName.value = "";
     formTag.value = "";
-    formTag.placeholder = "Image link";
+    formTag.placeholder = "Image URL";
     formName.placeholder = "Title";
     formTitle.textContent = "New place";
     modalButton.textContent = "Create";
