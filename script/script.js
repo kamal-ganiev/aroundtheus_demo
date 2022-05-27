@@ -29,14 +29,14 @@ const initialCards = [
 
 //////////// Edit Popup Form \\\\\\\\\\\\
 
-const editModal = document.querySelector(".modal__edit");
+const editModal = document.querySelector(".modal-edit");
 
 const editUnroll = document.querySelector(".profile__edit-button");
 
 const profileName = document.querySelector(".profile__name");
 const profileTag = document.querySelector(".profile__tag");
 
-const editFormRoll = document.querySelector(".modal__edit-close");
+const editFormRoll = document.querySelector(".modal-edit-close");
 
 const editFormName = document.querySelector("input[name='name']");
 const editFormTag = document.querySelector("input[name='tag']");
@@ -65,9 +65,9 @@ editFormRoll.addEventListener("click", function () {
 
 //////////// Add Card Popup Form \\\\\\\\\\\\
 
-const addModal = document.querySelector(".modal__add");
+const addModal = document.querySelector(".modal-add");
 
-const addFormRoll = document.querySelector(".modal__add-close");
+const addFormRoll = document.querySelector(".modal-add-close");
 
 const addFormTitle = document.querySelector("input[name='title']");
 const addFormLink = document.querySelector("input[name='link']");
@@ -87,7 +87,7 @@ addUnroll.addEventListener("click", function () {
   addModal.classList.remove("modal_not-active");
 });
 
-const addRoll = document.querySelector(".modal__add-close");
+const addRoll = document.querySelector(".modal-add-close");
 
 addRoll.addEventListener("click", function () {
   addModal.classList.add("modal_not-active");
