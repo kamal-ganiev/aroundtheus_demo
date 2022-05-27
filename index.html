@@ -57,27 +57,61 @@
           </div>
         </section>
 
-        <div class="modal modal_not-active">
+        <div class="modal modal__edit modal_not-active">
           <div class="modal__content">
-            <h2 class="modal__title"></h2>
+            <h2 class="modal__title">Edit profile</h2>
             <form class="modal__form" name="NameTag">
               <input
                 class="modal__field"
                 type="text"
                 name="name"
-                placeholder=""
+                placeholder="Enter your name"
                 required
               />
               <input
                 class="modal__field"
                 type="text"
                 name="tag"
-                placeholder=""
+                placeholder="Enter who you are"
                 required
               />
-              <button class="modal__button" type="submit"></button>
+              <button class="modal__button modal__edit-button" type="submit">
+                Save
+              </button>
             </form>
-            <button class="modal__close-button" type="button"></button>
+            <button
+              class="modal__close-button modal__edit-close"
+              type="button"
+            ></button>
+          </div>
+        </div>
+
+        <div class="modal modal__add modal_not-active">
+          <div class="modal__content">
+            <h2 class="modal__title">New place</h2>
+            <form class="modal__form" name="AddPlace">
+              <input
+                class="modal__field"
+                type="text"
+                name="title"
+                placeholder="Title"
+                required
+              />
+              <input
+                class="modal__field"
+                type="text"
+                name="link"
+                placeholder="Image link"
+                required
+              />
+              <button class="modal__button modal__add-button" type="submit">
+                Create
+              </button>
+            </form>
+            <button
+              class="modal__close-button modal__add-close"
+              type="button"
+            ></button>
           </div>
         </div>
       </main>

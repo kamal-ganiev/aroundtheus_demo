@@ -1,85 +1,3 @@
-let formShow = document.querySelector(".modal");
-let formButton = document.querySelector(".profile__edit-button");
-let formClose = document.querySelector(".modal__close-button");
-let formTitle = document.querySelector(".modal__title");
-
-let formName = document.querySelector("input[name='name']");
-let formTag = document.querySelector("input[name='tag']");
-
-let profileName = document.querySelector(".profile__name");
-let profileTag = document.querySelector(".profile__tag");
-
-let modalButton = document.querySelector(".modal__button");
-let modalForm = document.querySelector(".modal__form");
-
-////////// Profile Edit Form //////////
-
-function editForm(evt) {
-  evt.preventDefault();
-  profileName.textContent = formName.value;
-  profileTag.textContent = formTag.value;
-  formRoll();
-  modalForm.removeEventListener("submit", editForm);
-}
-
-formButton.addEventListener("click", function () {
-  formShow.classList.remove("modal_not-active");
-  formName.value = profileName.textContent;
-  formTag.value = profileTag.textContent;
-  formTitle.textContent = "Edit profile";
-  modalButton.textContent = "Save";
-  formName.placeholder = "Enter your name";
-  formTag.placeholder = "Enter who you are";
-  modalForm.addEventListener("submit", editForm);
-});
-
-////////// Form close button //////////
-
-function formRoll() {
-  formShow.classList.add("modal_not-active");
-}
-
-formClose.addEventListener("click", formRoll);
-
-////////// Card Creating Function //////////
-
-function createCard(card) {
-  const elementsItem = document.createElement("li");
-  elementsItem.classList.add("elements__item");
-
-  const element = document.createElement("div");
-  element.classList.add("element");
-
-  const elementTitle = document.createElement("h2");
-  elementTitle.classList.add("element__title");
-
-  const elementImage = document.createElement("img");
-  elementImage.classList.add("element__image");
-
-  const elementLikeButton = document.createElement("button");
-  elementLikeButton.classList.add(
-    "element__like-button",
-    "element__like-button_not-active"
-  );
-  elementLikeButton.setAttribute("type", "button");
-
-  const elementRemoveButton = document.createElement("button");
-  elementRemoveButton.classList.add("element__remove-button");
-  elementRemoveButton.setAttribute("type", "button");
-
-  elementImage.src = card.link;
-  elementImage.alt = card.name;
-  elementTitle.textContent = card.name;
-
-  element.appendChild(elementImage);
-  element.appendChild(elementTitle);
-  element.appendChild(elementLikeButton);
-  element.appendChild(elementRemoveButton);
-  elementsItem.appendChild(element);
-
-  elementList.append(elementsItem);
-}
-
 ////////// Intial Cards Array //////////
 
 const initialCards = [
@@ -109,125 +27,198 @@ const initialCards = [
   },
 ];
 
-////////// Initial Cards //////////
+//////////// Edit Popup Form \\\\\\\\\\\\
 
-const elementList = document.querySelector(".elements__list");
+const editModal = document.querySelector(".modal__edit");
 
-initialCards.forEach((card) => {
-  createCard(card);
+const editUnroll = document.querySelector(".profile__edit-button");
+
+const profileName = document.querySelector(".profile__name");
+const profileTag = document.querySelector(".profile__tag");
+
+const editFormRoll = document.querySelector(".modal__edit-close");
+
+const editFormName = document.querySelector("input[name='name']");
+const editFormTag = document.querySelector("input[name='tag']");
+
+const editForm = document.querySelector(".modal__form[name='NameTag']");
+
+const cardsContainer = document.querySelector(".elements__list");
+
+function submitEditForm(evt) {
+  evt.preventDefault();
+  profileName.textContent = editFormName.value;
+  profileTag.textContent = editFormTag.value;
+  editModal.classList.add("modal_not-active");
+}
+
+editUnroll.addEventListener("click", function () {
+  editModal.classList.remove("modal_not-active");
+  editFormName.value = profileName.textContent;
+  editFormTag.value = profileTag.textContent;
+  editForm.addEventListener("submit", submitEditForm);
 });
 
-////////// Adding Cards Function //////////
+editFormRoll.addEventListener("click", function () {
+  editModal.classList.add("modal_not-active");
+});
 
-function addCard(evt) {
+//////////// Add Card Popup Form \\\\\\\\\\\\
+
+const addModal = document.querySelector(".modal__add");
+
+const addFormRoll = document.querySelector(".modal__add-close");
+
+const addFormTitle = document.querySelector("input[name='title']");
+const addFormLink = document.querySelector("input[name='link']");
+
+const addUnroll = document.querySelector(".profile__add-button");
+const addForm = document.querySelector(".modal__form[name='AddPlace']");
+
+function submitAddForm(evt) {
   evt.preventDefault();
+  createCard();
+  addFormTitle.value = "";
+  addFormLink.value = "";
+  addModal.classList.add("modal_not-active");
+}
+
+addUnroll.addEventListener("click", function () {
+  addModal.classList.remove("modal_not-active");
+});
+
+const addRoll = document.querySelector(".modal__add-close");
+
+addRoll.addEventListener("click", function () {
+  addModal.classList.add("modal_not-active");
+});
+
+addForm.addEventListener("submit", submitAddForm);
+
+//////////// Initial Cards Creating \\\\\\\\\\\\
+
+initialCards.forEach((arr) => {
   const elementsItem = document.createElement("li");
+  const card = document.createElement("div");
+  const cardTitle = document.createElement("h2");
+  const cardImage = document.createElement("img");
+  const cardLikeButton = document.createElement("button");
+  const cardRemoveButton = document.createElement("button");
+
   elementsItem.classList.add("elements__item");
-
-  const element = document.createElement("div");
-  element.classList.add("element");
-
-  const elementTitle = document.createElement("h2");
-  elementTitle.classList.add("element__title");
-
-  const elementImage = document.createElement("img");
-  elementImage.classList.add("element__image");
-
-  const elementLikeButton = document.createElement("button");
-  elementLikeButton.classList.add(
+  card.classList.add("element");
+  cardTitle.classList.add("element__title");
+  cardImage.classList.add("element__image");
+  cardLikeButton.classList.add(
     "element__like-button",
     "element__like-button_not-active"
   );
-  elementLikeButton.setAttribute("type", "button");
-  elementLikeButton.addEventListener("click", likeClick);
+  cardRemoveButton.classList.add("element__remove-button");
 
-  const elementRemoveButton = document.createElement("button");
-  elementRemoveButton.classList.add("element__remove-button");
-  elementRemoveButton.setAttribute("type", "button");
-  elementRemoveButton.addEventListener("click", removeCard);
+  cardTitle.textContent = arr.name;
 
-  elementImage.src = formTag.value;
-  elementImage.alt = formName.value;
-  elementTitle.textContent = formName.value;
+  cardImage.alt = arr.name;
+  cardImage.src = arr.link;
 
-  elementImage.addEventListener("click", function () {
-    imageOverlay.classList.add("elements__image-preview_visible");
-    imageZoom.src = elementImage.src;
-    imageZoom.alt = elementImage.alt;
-    imageClose.addEventListener("click", function () {
-      imageOverlay.classList.remove("elements__image-preview_visible");
+  cardImage.addEventListener("click", function () {
+    const cardImageOverlay = document.querySelector(".elements__image-preview");
+    cardImageOverlay.classList.add("elements__image-preview_visible");
+    const cardImagePreview = document.querySelector(".elements__image-zoom");
+    cardImagePreview.src = cardImage.src;
+    cardImagePreview.alt = cardImage.alt;
+    const cardImagePreviewClose = document.querySelector(
+      ".elements__image-close-button"
+    );
+    cardImagePreviewClose.addEventListener("click", function () {
+      cardImageOverlay.classList.remove("elements__image-preview_visible");
     });
-    imageTitle.textContent = elementImage.alt;
+    const cardImagePreviewTitle = document.querySelector(
+      ".elements__image-description"
+    );
+    cardImagePreviewTitle.textContent = cardImage.alt;
   });
 
-  element.appendChild(elementImage);
-  element.appendChild(elementTitle);
-  element.appendChild(elementLikeButton);
-  element.appendChild(elementRemoveButton);
-  elementsItem.appendChild(element);
-
-  elementList.append(elementsItem);
-
-  formRoll();
-
-  modalForm.removeEventListener("submit", addCard);
-}
-
-document
-  .querySelector(".profile__add-button")
-  .addEventListener("click", function () {
-    formShow.classList.remove("modal_not-active");
-    formName.value = "";
-    formTag.value = "";
-    formTag.placeholder = "Image URL";
-    formName.placeholder = "Title";
-    formTitle.textContent = "New place";
-    modalButton.textContent = "Create";
-    modalForm.addEventListener("submit", addCard);
+  cardLikeButton.setAttribute("type", "button");
+  cardLikeButton.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle("element__like-button_not-active");
   });
 
-////////// Remove "Trash Can" Button Function //////////
+  cardRemoveButton.setAttribute("type", "button");
+  cardRemoveButton.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.closest("li").remove();
+  });
 
-function removeCard(evt) {
-  const eventTarget = evt.target;
-  eventTarget.closest("li").remove();
-}
+  card.appendChild(cardImage);
+  card.appendChild(cardTitle);
+  card.appendChild(cardLikeButton);
+  card.appendChild(cardRemoveButton);
+  elementsItem.appendChild(card);
 
-const removeButton = document.querySelectorAll(".element__remove-button");
-removeButton.forEach((button) => {
-  button.addEventListener("click", removeCard);
+  cardsContainer.prepend(elementsItem);
 });
 
-////////// Like Button //////////
+//////////// Adding Cards Function \\\\\\\\\\\\
 
-function likeClick(evt) {
-  const eventTarget = evt.target;
-  eventTarget.classList.toggle("element__like-button_active");
-}
+function createCard() {
+  const elementsItem = document.createElement("li");
+  const card = document.createElement("div");
+  const cardTitle = document.createElement("h2");
+  const cardImage = document.createElement("img");
+  const cardLikeButton = document.createElement("button");
+  const cardRemoveButton = document.createElement("button");
 
-const likeButton = document.querySelectorAll(".element__like-button");
-likeButton.forEach((like) => {
-  like.addEventListener("click", likeClick);
-});
+  elementsItem.classList.add("elements__item");
+  card.classList.add("element");
+  cardTitle.classList.add("element__title");
+  cardImage.classList.add("element__image");
+  cardLikeButton.classList.add(
+    "element__like-button",
+    "element__like-button_not-active"
+  );
+  cardRemoveButton.classList.add("element__remove-button");
 
-////////// Image Zoom //////////
+  cardTitle.textContent = addFormTitle.value;
 
-const imageOverlay = document.querySelector(".elements__image-preview");
-const imageZoom = document.querySelector(".elements__image-zoom");
-const imageClose = document.querySelector(".elements__image-close-button");
-const imageCard = document.querySelectorAll(".element__image");
-const cardTitle = document.querySelectorAll(".element__title");
-const imageTitle = document.querySelector(".elements__image-description");
-imageCard.forEach((image) => {
-  image.addEventListener("click", function () {
-    imageOverlay.classList.add("elements__image-preview_visible");
-    imageZoom.src = image.src;
-    imageZoom.alt = image.alt;
-    imageClose.addEventListener("click", function () {
-      imageOverlay.classList.remove("elements__image-preview_visible");
+  cardImage.alt = addFormTitle.value;
+  cardImage.src = addFormLink.value;
+
+  cardImage.addEventListener("click", function () {
+    const cardImageOverlay = document.querySelector(".elements__image-preview");
+    cardImageOverlay.classList.add("elements__image-preview_visible");
+    const cardImagePreview = document.querySelector(".elements__image-zoom");
+    cardImagePreview.src = cardImage.src;
+    cardImagePreview.alt = cardImage.alt;
+    const cardImagePreviewClose = document.querySelector(
+      ".elements__image-close-button"
+    );
+    cardImagePreviewClose.addEventListener("click", function () {
+      cardImageOverlay.classList.remove("elements__image-preview_visible");
     });
-    imageTitle.textContent = image.alt;
+    const cardImagePreviewTitle = document.querySelector(
+      ".elements__image-description"
+    );
+    cardImagePreviewTitle.textContent = cardImage.alt;
   });
-});
 
-console.log(cardTitle);
+  cardLikeButton.setAttribute("type", "button");
+  cardLikeButton.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle("element__like-button_not-active");
+  });
+
+  cardRemoveButton.setAttribute("type", "button");
+  cardRemoveButton.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.closest("li").remove();
+  });
+
+  card.appendChild(cardImage);
+  card.appendChild(cardTitle);
+  card.appendChild(cardLikeButton);
+  card.appendChild(cardRemoveButton);
+  elementsItem.appendChild(card);
+
+  cardsContainer.prepend(elementsItem);
+}

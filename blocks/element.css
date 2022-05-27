@@ -43,14 +43,14 @@
   transition: 0.3s;
   grid-area: button;
   border: none;
-  background-image: url("../images/elements/__like-button.svg");
+  background-image: url("../images/elements/__like-button_active.svg");
   background-color: rgba(255, 255, 255, 0);
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.element__like-button_active {
-  background-image: url("../images/elements/__like-button_active.svg");
+.element__like-button_not-active {
+  background-image: url("../images/elements/__like-button.svg");
   background-color: rgba(255, 255, 255, 0);
 }
 
