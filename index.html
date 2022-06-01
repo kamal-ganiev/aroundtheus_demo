@@ -21,7 +21,7 @@
         <img
           class="header__logo"
           src="./images/header/__logo.svg"
-          alt="Vector logo Around the U.S."
+          alt="Vector logo Around the U.S. city skyline>"
         />
       </header>
 
@@ -29,12 +29,12 @@
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./images/profile/__avatar.jpg"
+            src="./images/profile/__avatar.jpeg"
             alt="Profile's avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
-            <p class="profile__tag">Explorer</p>
+            <h1 class="profile__name">Kamal Ganiev</h1>
+            <p class="profile__tag">Software Engineer</p>
             <button class="profile__edit-button" type="button"></button>
           </div>
           <button class="profile__add-button" type="button"></button>
@@ -44,20 +44,9 @@
           <ul class="elements__list">
             <!-- Cards are added by the script -->
           </ul>
-
-          <div class="elements__image-preview">
-            <div class="elements__image-container">
-              <img class="elements__image-zoom" src="#" alt="" />
-              <button
-                class="elements__image-close-button"
-                type="button"
-              ></button>
-              <h3 class="elements__image-description"></h3>
-            </div>
-          </div>
         </section>
 
-        <div class="modal modal-edit modal_not-active">
+        <div class="modal modal-edit">
           <div class="modal__content">
             <h2 class="modal__title">Edit profile</h2>
             <form class="modal__form" name="NameTag">
@@ -79,14 +68,11 @@
                 Save
               </button>
             </form>
-            <button
-              class="modal__close-button modal-edit-close"
-              type="button"
-            ></button>
+            <button class="modal__close-button" type="button"></button>
           </div>
         </div>
 
-        <div class="modal modal-add modal_not-active">
+        <div class="modal modal-add">
           <div class="modal__content">
             <h2 class="modal__title">New place</h2>
             <form class="modal__form" name="AddPlace">
@@ -108,10 +94,15 @@
                 Create
               </button>
             </form>
-            <button
-              class="modal__close-button modal-add-close"
-              type="button"
-            ></button>
+            <button class="modal__close-button" type="button"></button>
+          </div>
+        </div>
+
+        <div class="modal modal-preview">
+          <div class="modal-preview__container">
+            <img class="modal-preview__image" src="#" alt="" />
+            <button class="modal__close-button" type="button"></button>
+            <h3 class="modal-preview__title"></h3>
           </div>
         </div>
       </main>
@@ -120,6 +111,20 @@
         <p class="footer__copyrights">© 2022 Around The U.S.</p>
       </footer>
     </div>
+
+    <template class="card__template">
+      <li class="elements__item">
+        <div class="element">
+          <img class="element__image" alt="" src="#" />
+          <h2 class="element__title"></h2>
+          <button
+            class="element__like-button element__like-button_not-active"
+            type="button"
+          ></button>
+          <button class="element__remove-button" type="button"></button>
+        </div>
+      </li>
+    </template>
 
     <script src="./script/script.js"></script>
   </body>

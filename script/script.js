@@ -27,16 +27,24 @@ const initialCards = [
   },
 ];
 
+//////////// Opening/Closing Modals Functions \\\\\\\\\\\\
+
+function modalOpen(modal) {
+  modal.classList.add("modal_opened");
+}
+
+function modalClose(modal) {
+  modal.classList.remove("modal_opened");
+}
+
 //////////// Edit Popup Form \\\\\\\\\\\\
 
 const editModal = document.querySelector(".modal-edit");
 
-const editUnroll = document.querySelector(".profile__edit-button");
+const editUnrollButton = document.querySelector(".profile__edit-button");
 
 const profileName = document.querySelector(".profile__name");
 const profileTag = document.querySelector(".profile__tag");
-
-const editFormRoll = document.querySelector(".modal-edit-close");
 
 const editFormName = document.querySelector("input[name='name']");
 const editFormTag = document.querySelector("input[name='tag']");
@@ -49,176 +57,102 @@ function submitEditForm(evt) {
   evt.preventDefault();
   profileName.textContent = editFormName.value;
   profileTag.textContent = editFormTag.value;
-  editModal.classList.add("modal_not-active");
+  modalClose(editModal);
 }
 
-editUnroll.addEventListener("click", function () {
-  editModal.classList.remove("modal_not-active");
+editForm.addEventListener("submit", submitEditForm);
+
+editUnrollButton.addEventListener("click", function () {
+  modalOpen(editModal);
   editFormName.value = profileName.textContent;
   editFormTag.value = profileTag.textContent;
-  editForm.addEventListener("submit", submitEditForm);
-});
-
-editFormRoll.addEventListener("click", function () {
-  editModal.classList.add("modal_not-active");
+  editModal
+    .querySelector(".modal__close-button")
+    .addEventListener("click", () => modalClose(editModal));
 });
 
 //////////// Add Card Popup Form \\\\\\\\\\\\
 
 const addModal = document.querySelector(".modal-add");
 
-const addFormRoll = document.querySelector(".modal-add-close");
-
 const addFormTitle = document.querySelector("input[name='title']");
 const addFormLink = document.querySelector("input[name='link']");
 
-const addUnroll = document.querySelector(".profile__add-button");
+const addUnrollButton = document.querySelector(".profile__add-button");
 const addForm = document.querySelector(".modal__form[name='AddPlace']");
 
 function submitAddForm(evt) {
   evt.preventDefault();
-  createCard();
+
+  const newCard = createCard({
+    name: addFormTitle.value,
+    link: addFormLink.value,
+  });
+  cardsContainer.prepend(newCard);
   addFormTitle.value = "";
   addFormLink.value = "";
-  addModal.classList.add("modal_not-active");
+  modalClose(addModal);
 }
 
-addUnroll.addEventListener("click", function () {
-  addModal.classList.remove("modal_not-active");
-});
-
-const addRoll = document.querySelector(".modal-add-close");
-
-addRoll.addEventListener("click", function () {
-  addModal.classList.add("modal_not-active");
+addUnrollButton.addEventListener("click", function () {
+  modalOpen(addModal);
+  addModal
+    .querySelector(".modal__close-button")
+    .addEventListener("click", () => modalClose(addModal));
 });
 
 addForm.addEventListener("submit", submitAddForm);
 
+//////////// Creating Cards Function \\\\\\\\\\\\
+
+function createCard(item) {
+  const card = document.importNode(elementsItem, true);
+
+  card.querySelector(".element__title").textContent = item.name;
+  card.querySelector(".element__image").alt = item.name;
+  card.querySelector(".element__image").src = item.link;
+
+  card.querySelector(".element__image").addEventListener("click", function () {
+    const cardImageOverlay = document.querySelector(".modal-preview");
+    modalOpen(cardImageOverlay);
+    const cardImagePreview = document.querySelector(".modal-preview__image");
+    cardImagePreview.src = card.querySelector(".element__image").src;
+    cardImagePreview.alt = card.querySelector(".element__image").alt;
+    cardImageOverlay
+      .querySelector(".modal__close-button")
+      .addEventListener("click", () => modalClose(cardImageOverlay));
+    const cardImagePreviewTitle = document.querySelector(
+      ".modal-preview__title"
+    );
+    cardImagePreviewTitle.textContent =
+      card.querySelector(".element__image").alt;
+  });
+
+  card
+    .querySelector(".element__like-button")
+    .addEventListener("click", function (evt) {
+      const eventTarget = evt.target;
+      eventTarget.classList.toggle("element__like-button_not-active");
+    });
+
+  card
+    .querySelector(".element__remove-button")
+    .addEventListener("click", function (evt) {
+      const eventTarget = evt.target;
+      eventTarget.closest("li").remove();
+    });
+
+  return card;
+}
+
 //////////// Initial Cards Creating \\\\\\\\\\\\
 
-initialCards.forEach((arr) => {
-  const elementsItem = document.createElement("li");
-  const card = document.createElement("div");
-  const cardTitle = document.createElement("h2");
-  const cardImage = document.createElement("img");
-  const cardLikeButton = document.createElement("button");
-  const cardRemoveButton = document.createElement("button");
+const cardTemplate = document.querySelector(".card__template");
+const cloneCardTemplate = cardTemplate.content.cloneNode(true);
 
-  elementsItem.classList.add("elements__item");
-  card.classList.add("element");
-  cardTitle.classList.add("element__title");
-  cardImage.classList.add("element__image");
-  cardLikeButton.classList.add(
-    "element__like-button",
-    "element__like-button_not-active"
-  );
-  cardRemoveButton.classList.add("element__remove-button");
+const elementsItem = cloneCardTemplate.querySelector(".elements__item");
 
-  cardTitle.textContent = arr.name;
-
-  cardImage.alt = arr.name;
-  cardImage.src = arr.link;
-
-  cardImage.addEventListener("click", function () {
-    const cardImageOverlay = document.querySelector(".elements__image-preview");
-    cardImageOverlay.classList.add("elements__image-preview_visible");
-    const cardImagePreview = document.querySelector(".elements__image-zoom");
-    cardImagePreview.src = cardImage.src;
-    cardImagePreview.alt = cardImage.alt;
-    const cardImagePreviewClose = document.querySelector(
-      ".elements__image-close-button"
-    );
-    cardImagePreviewClose.addEventListener("click", function () {
-      cardImageOverlay.classList.remove("elements__image-preview_visible");
-    });
-    const cardImagePreviewTitle = document.querySelector(
-      ".elements__image-description"
-    );
-    cardImagePreviewTitle.textContent = cardImage.alt;
-  });
-
-  cardLikeButton.setAttribute("type", "button");
-  cardLikeButton.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle("element__like-button_not-active");
-  });
-
-  cardRemoveButton.setAttribute("type", "button");
-  cardRemoveButton.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.closest("li").remove();
-  });
-
-  card.appendChild(cardImage);
-  card.appendChild(cardTitle);
-  card.appendChild(cardLikeButton);
-  card.appendChild(cardRemoveButton);
-  elementsItem.appendChild(card);
-
+initialCards.forEach((item) => {
+  const elementsItem = createCard(item);
   cardsContainer.prepend(elementsItem);
 });
-
-//////////// Adding Cards Function \\\\\\\\\\\\
-
-function createCard() {
-  const elementsItem = document.createElement("li");
-  const card = document.createElement("div");
-  const cardTitle = document.createElement("h2");
-  const cardImage = document.createElement("img");
-  const cardLikeButton = document.createElement("button");
-  const cardRemoveButton = document.createElement("button");
-
-  elementsItem.classList.add("elements__item");
-  card.classList.add("element");
-  cardTitle.classList.add("element__title");
-  cardImage.classList.add("element__image");
-  cardLikeButton.classList.add(
-    "element__like-button",
-    "element__like-button_not-active"
-  );
-  cardRemoveButton.classList.add("element__remove-button");
-
-  cardTitle.textContent = addFormTitle.value;
-
-  cardImage.alt = addFormTitle.value;
-  cardImage.src = addFormLink.value;
-
-  cardImage.addEventListener("click", function () {
-    const cardImageOverlay = document.querySelector(".elements__image-preview");
-    cardImageOverlay.classList.add("elements__image-preview_visible");
-    const cardImagePreview = document.querySelector(".elements__image-zoom");
-    cardImagePreview.src = cardImage.src;
-    cardImagePreview.alt = cardImage.alt;
-    const cardImagePreviewClose = document.querySelector(
-      ".elements__image-close-button"
-    );
-    cardImagePreviewClose.addEventListener("click", function () {
-      cardImageOverlay.classList.remove("elements__image-preview_visible");
-    });
-    const cardImagePreviewTitle = document.querySelector(
-      ".elements__image-description"
-    );
-    cardImagePreviewTitle.textContent = cardImage.alt;
-  });
-
-  cardLikeButton.setAttribute("type", "button");
-  cardLikeButton.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle("element__like-button_not-active");
-  });
-
-  cardRemoveButton.setAttribute("type", "button");
-  cardRemoveButton.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.closest("li").remove();
-  });
-
-  card.appendChild(cardImage);
-  card.appendChild(cardTitle);
-  card.appendChild(cardLikeButton);
-  card.appendChild(cardRemoveButton);
-  elementsItem.appendChild(card);
-
-  cardsContainer.prepend(elementsItem);
-}
