@@ -37,8 +37,8 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
-const modalCloseButton = document.querySelectorAll(".modal__close-button");
-modalCloseButton.forEach((item) => {
+const modalCloseButtons = document.querySelectorAll(".modal__close-button");
+modalCloseButtons.forEach((item) => {
   item.addEventListener("click", () => closeModal(item.closest(".modal")));
 });
 
