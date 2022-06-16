@@ -49,22 +49,37 @@
         <div class="modal modal-edit">
           <div class="modal__content">
             <h2 class="modal__title">Edit profile</h2>
-            <form class="modal__form" name="NameTag">
-              <input
-                class="modal__field"
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-                required
-              />
-              <input
-                class="modal__field"
-                type="text"
-                name="tag"
-                placeholder="Enter who you are"
-                required
-              />
-              <button class="modal__button modal-edit-button" type="submit">
+            <form class="form modal__form" name="NameTag" novalidate>
+              <label class="form__field modal__label">
+                <input
+                  class="form__input modal__field"
+                  id="name__input"
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                />
+                <span class="form__error-message name__input-error"></span>
+              </label>
+              <label class="form__field modal__label">
+                <input
+                  class="form__input modal__field"
+                  id="tag__input"
+                  type="text"
+                  name="tag"
+                  placeholder="Enter who you are"
+                  minlength="2"
+                  maxlength="200"
+                  required
+                />
+                <span class="form__error-message tag__input-error"></span>
+              </label>
+              <button
+                class="form__button modal__button modal-edit-button"
+                type="submit"
+              >
                 Save
               </button>
             </form>
@@ -75,22 +90,37 @@
         <div class="modal modal-add">
           <div class="modal__content">
             <h2 class="modal__title">New place</h2>
-            <form class="modal__form" name="AddPlace">
-              <input
-                class="modal__field"
-                type="text"
-                name="title"
-                placeholder="Title"
-                required
-              />
-              <input
-                class="modal__field"
-                type="text"
-                name="link"
-                placeholder="Image link"
-                required
-              />
-              <button class="modal__button modal-add-button" type="submit">
+            <form class="form modal__form" name="AddPlace">
+              <label class="form__field modal__label">
+                <input
+                  class="form__input modal__field"
+                  id="title__input"
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  minlength="1"
+                  maxlength="30"
+                  required
+                />
+                <span class="form__error-message title__input-error"></span>
+              </label>
+              <label class="form__field modal__label">
+                <input
+                  class="form__input modal__field"
+                  id="link__input"
+                  type="text"
+                  name="link"
+                  placeholder="Image link"
+                  type="url"
+                  pattern="https://.*"
+                  required
+                />
+                <span class="form__error-message link__input-error"></span>
+              </label>
+              <button
+                class="form__button modal__button modal-add-button"
+                type="submit"
+              >
                 Create
               </button>
             </form>
@@ -127,5 +157,6 @@
     </template>
 
     <script src="./script/script.js"></script>
+    <script src="./script/validate.js"></script>
   </body>
 </html>
