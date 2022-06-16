@@ -42,6 +42,23 @@ modalCloseButtons.forEach((item) => {
   item.addEventListener("click", () => closeModal(item.closest(".modal")));
 });
 
+const modalList = Array.from(document.querySelectorAll(".modal"));
+
+const escPressClose = (evt) => {
+  if (
+    evt.key === "Escape" &&
+    modalList.some((modal) => {
+      return modal.classList.contains("modal_opened");
+    })
+  ) {
+    modalList.forEach((modal) => {
+      closeModal(modal);
+    });
+  }
+};
+
+document.addEventListener("keydown", escPressClose);
+
 //////////// Edit Popup Form \\\\\\\\\\\\
 
 const editModal = document.querySelector(".modal-edit");
