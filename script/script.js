@@ -42,6 +42,8 @@ modalCloseButtons.forEach((item) => {
   item.addEventListener("click", () => closeModal(item.closest(".modal")));
 });
 
+//////////// Opening/Closing Modals by Pressing "Escape" \\\\\\\\\\\\
+
 const modalList = Array.from(document.querySelectorAll(".modal"));
 
 const escPressClose = (evt) => {
@@ -58,6 +60,16 @@ const escPressClose = (evt) => {
 };
 
 document.addEventListener("keydown", escPressClose);
+
+//////////// Opening/Closing Modals by Clicking Outside of Modals \\\\\\\\\\\\
+
+modalList.forEach((modal) => {
+  modal.addEventListener("click", function (evt) {
+    closeModal(modal);
+    evt.stopPropagation();
+  }),
+    false;
+});
 
 //////////// Edit Popup Form \\\\\\\\\\\\
 

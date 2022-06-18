@@ -12,6 +12,7 @@
   align-items: center;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s;
+  cursor: pointer;
 }
 
 .modal_opened {
@@ -29,6 +30,7 @@
   background-color: #fff;
   color: #000;
   border-radius: 15px;
+  cursor: auto;
 }
 
 .modal__title {
@@ -126,6 +128,8 @@
 
 .modal-preview__container {
   position: relative;
+  cursor: auto;
+  z-index: 1;
 }
 
 .modal-preview__image {
