@@ -1,15 +1,19 @@
 const showValidationMessage = (inputElement, formElement, errorElement) => {
-  const errorMessage = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorMessage = formElement.querySelector(
+    `.${inputElement.id}_type_error`
+  );
   errorMessage.textContent = errorElement;
   errorMessage.classList.add("form__error-message_active");
-  inputElement.classList.add("form__input-error_active");
+  inputElement.classList.add("form__input_type_error_active");
 };
 
 const hideValidationMessage = (inputElement, formElement) => {
-  const errorMessage = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorMessage = formElement.querySelector(
+    `.${inputElement.id}_type_error`
+  );
   errorMessage.textContent = "";
   errorMessage.classList.remove("form__error-message_active");
-  inputElement.classList.remove("form__input-error_active");
+  inputElement.classList.remove("form__input_type_error_active");
 };
 
 const isValid = (formElement, inputElement) => {

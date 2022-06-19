@@ -31,7 +31,7 @@
   opacity: 1;
 }
 
-.form__input-error_active {
+.form__input_type_error_active {
   border-bottom-color: #ff0000;
 }
 
