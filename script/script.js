@@ -64,11 +64,23 @@ document.addEventListener("keydown", escPressClose);
 //////////// Opening/Closing Modals by Clicking Outside of Modals \\\\\\\\\\\\
 
 modalList.forEach((modal) => {
-  modal.addEventListener("click", function (evt) {
+  modal.addEventListener("click", () => {
     closeModal(modal);
-    evt.stopPropagation();
-  }),
-    false;
+  });
+});
+
+const modalContentList = Array.from(
+  document.querySelectorAll(".modal__container")
+);
+
+modalContentList.forEach((content) => {
+  content.addEventListener(
+    "click",
+    (evt) => {
+      evt.stopPropagation();
+    },
+    false
+  );
 });
 
 //////////// Edit Popup Form \\\\\\\\\\\\
