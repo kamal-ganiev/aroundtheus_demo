@@ -27,14 +27,25 @@ const initialCards = [
   },
 ];
 
+//////////// Cloning Card's Template \\\\\\\\\\\\
+
+const cardTemplate = document.querySelector(".card__template");
+const cloneCardTemplate = cardTemplate.content.cloneNode(true);
+
+const elementsItem = cloneCardTemplate.querySelector(".elements__item");
+
 //////////// Opening/Closing Modals Functions \\\\\\\\\\\\
 
 function openModal(modal) {
+  modal.addEventListener("mousedown", handleOutsideClickClose);
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closeModal(modal) {
+  modal.removeEventListener("mousedown", handleOutsideClickClose);
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
@@ -46,46 +57,27 @@ modalCloseButtons.forEach((item) => {
 
 const modalList = Array.from(document.querySelectorAll(".modal"));
 
-const escPressClose = (evt) => {
-  if (
-    evt.key === "Escape" &&
-    modalList.some((modal) => {
-      return modal.classList.contains("modal_opened");
-    })
-  ) {
-    modalList.forEach((modal) => {
-      closeModal(modal);
-    });
+const handleEscClose = (evt) => {
+  if (evt.key === "Escape") {
+    if (document.querySelector(".modal_opened")) {
+      modalList.forEach((modal) => {
+        closeModal(modal);
+      });
+    }
   }
 };
 
-document.addEventListener("keydown", escPressClose);
-
 //////////// Opening/Closing Modals by Clicking Outside of Modals \\\\\\\\\\\\
 
-modalList.forEach((modal) => {
-  modal.addEventListener("click", () => {
-    closeModal(modal);
-  });
-});
-
-const modalContentList = Array.from(
-  document.querySelectorAll(".modal__container")
-);
-
-modalContentList.forEach((content) => {
-  content.addEventListener(
-    "click",
-    (evt) => {
-      evt.stopPropagation();
-    },
-    false
-  );
-});
+const handleOutsideClickClose = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.target);
+  }
+};
 
 //////////// Edit Popup Form \\\\\\\\\\\\
 
-const editModal = document.querySelector(".modal-edit");
+const editProfileModal = document.querySelector(".modal-edit");
 
 const editUnrollButton = document.querySelector(".profile__edit-button");
 
@@ -103,45 +95,53 @@ function submitEditForm(evt) {
   evt.preventDefault();
   profileName.textContent = editFormName.value;
   profileTag.textContent = editFormTag.value;
-  closeModal(editModal);
+  closeModal(editProfileModal);
 }
 
 editForm.addEventListener("submit", submitEditForm);
 
-editUnrollButton.addEventListener("click", function () {
-  openModal(editModal);
-  editFormName.value = profileName.textContent;
-  editFormTag.value = profileTag.textContent;
-});
+function fillEditForm(formField, profileField) {
+  formField.value = profileField.textContent;
+}
+
+function openEditModal() {
+  openModal(editProfileModal);
+  fillEditForm(editFormName, profileName);
+  fillEditForm(editFormTag, profileTag);
+}
+
+editUnrollButton.addEventListener("click", openEditModal);
 
 //////////// Add Card Popup Form \\\\\\\\\\\\
 
-const addModal = document.querySelector(".modal-add");
+const addCardModal = document.querySelector(".modal-add");
 
 const addFormTitle = document.querySelector("input[name='title']");
 const addFormLink = document.querySelector("input[name='link']");
 
 const addUnrollButton = document.querySelector(".profile__add-button");
-const addForm = document.querySelector(".modal__form[name='AddPlace']");
+const addCardFormSubmitButton = document.querySelector(".modal-add-button");
+const addCardForm = document.forms.AddPlace;
+
+const addCardFormInputList = [addFormTitle, addFormLink];
 
 function submitAddForm(evt) {
   evt.preventDefault();
 
-  const newCard = createCard({
+  renderCard(elementsItem, {
     name: addFormTitle.value,
     link: addFormLink.value,
   });
-  cardsContainer.prepend(newCard);
-  addFormTitle.value = "";
-  addFormLink.value = "";
-  closeModal(addModal);
+  addCardForm.reset();
+  closeModal(addCardModal);
+  buttonToggleState(addCardFormInputList, addCardFormSubmitButton);
 }
 
 addUnrollButton.addEventListener("click", function () {
-  openModal(addModal);
+  openModal(addCardModal);
 });
 
-addForm.addEventListener("submit", submitAddForm);
+addCardForm.addEventListener("submit", submitAddForm);
 
 //////////// Creating Cards Function \\\\\\\\\\\\
 
@@ -164,31 +164,29 @@ function createCard(item) {
     cardImagePreviewTitle.textContent = modalPreviewImage.alt;
   });
 
-  card
-    .querySelector(".element__like-button")
-    .addEventListener("click", function (evt) {
-      const eventTarget = evt.target;
-      eventTarget.classList.toggle("element__like-button_not-active");
-    });
+  const cardLikeButton = card.querySelector(".element__like-button");
+  const cardRemoveButton = card.querySelector(".element__remove-button");
 
-  card
-    .querySelector(".element__remove-button")
-    .addEventListener("click", function (evt) {
-      const eventTarget = evt.target;
-      eventTarget.closest("li").remove();
-    });
+  cardLikeButton.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle("element__like-button_not-active");
+  });
+
+  cardRemoveButton.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.closest(".elements__item").remove();
+  });
 
   return card;
 }
 
+function renderCard(newCard, item) {
+  newCard = createCard(item);
+  cardsContainer.prepend(newCard);
+}
+
 //////////// Initial Cards Creating \\\\\\\\\\\\
 
-const cardTemplate = document.querySelector(".card__template");
-const cloneCardTemplate = cardTemplate.content.cloneNode(true);
-
-const elementsItem = cloneCardTemplate.querySelector(".elements__item");
-
 initialCards.forEach((item) => {
-  const elementsItem = createCard(item);
-  cardsContainer.prepend(elementsItem);
+  renderCard(elementsItem, item);
 });
