@@ -134,7 +134,12 @@ function submitAddForm(evt) {
   });
   addCardForm.reset();
   closeModal(addCardModal);
-  buttonToggleState(addCardFormInputList, addCardFormSubmitButton);
+  const submitButtonClass = { inactiveButtonClass: "form__button_inactive" };
+  toggleButtonState(
+    addCardFormInputList,
+    addCardFormSubmitButton,
+    submitButtonClass
+  );
 }
 
 addUnrollButton.addEventListener("click", function () {
