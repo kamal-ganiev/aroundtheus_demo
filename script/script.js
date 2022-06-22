@@ -59,11 +59,8 @@ const modalList = Array.from(document.querySelectorAll(".modal"));
 
 const handleEscClose = (evt) => {
   if (evt.key === "Escape") {
-    if (document.querySelector(".modal_opened")) {
-      modalList.forEach((modal) => {
-        closeModal(modal);
-      });
-    }
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
   }
 };
 
@@ -100,14 +97,14 @@ function submitEditForm(evt) {
 
 editForm.addEventListener("submit", submitEditForm);
 
-function fillEditForm(formField, profileField) {
-  formField.value = profileField.textContent;
+function fillEditForm(name, tag) {
+  editFormName.value = name.textContent;
+  editFormTag.value = tag.textContent;
 }
 
 function openEditModal() {
   openModal(editProfileModal);
-  fillEditForm(editFormName, profileName);
-  fillEditForm(editFormTag, profileTag);
+  fillEditForm(profileName, profileTag);
 }
 
 editUnrollButton.addEventListener("click", openEditModal);
