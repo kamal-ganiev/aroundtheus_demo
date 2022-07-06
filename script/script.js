@@ -92,10 +92,9 @@ const addCardFormInputList = [addFormTitle, addFormLink];
 function submitAddForm(evt) {
   evt.preventDefault();
 
-  renderCard(elementsItem, {
-    name: addFormTitle.value,
-    link: addFormLink.value,
-  });
+  const card = new Card(addFormLink.value, addFormTitle.value);
+  cardsContainer.prepend(card.renderCard(cardTemplate));
+
   addCardForm.reset();
   closeModal(addCardModal);
   const submitButtonClass = { inactiveButtonClass: "form__button_inactive" };
