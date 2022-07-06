@@ -27,50 +27,17 @@ const initialCards = [
   },
 ];
 
+//////////// Importing Modules \\\\\\\\\\\\
+
+import { Card } from "./Card.js";
+import { openModal, closeModal } from "./utils.js";
+
 //////////// Cloning Card's Template \\\\\\\\\\\\
 
 const cardTemplate = document.querySelector(".card__template");
 const cloneCardTemplate = cardTemplate.content.cloneNode(true);
 
 const elementsItem = cloneCardTemplate.querySelector(".elements__item");
-
-//////////// Opening/Closing Modals Functions \\\\\\\\\\\\
-
-function openModal(modal) {
-  modal.addEventListener("mousedown", handleOutsideClickClose);
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscClose);
-}
-
-function closeModal(modal) {
-  modal.removeEventListener("mousedown", handleOutsideClickClose);
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscClose);
-}
-
-const modalCloseButtons = document.querySelectorAll(".modal__close-button");
-modalCloseButtons.forEach((item) => {
-  item.addEventListener("click", () => closeModal(item.closest(".modal")));
-});
-
-//////////// Opening/Closing Modals by Pressing "Escape" \\\\\\\\\\\\
-
-const modalList = Array.from(document.querySelectorAll(".modal"));
-
-const handleEscClose = (evt) => {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    closeModal(openedModal);
-  }
-};
-
-//////////// Opening/Closing Modals by Clicking Outside of Modals \\\\\\\\\\\\
-
-const handleOutsideClickClose = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.target);
-  }
-};
 
 //////////// Edit Popup Form \\\\\\\\\\\\
 
@@ -145,50 +112,9 @@ addUnrollButton.addEventListener("click", function () {
 
 addCardForm.addEventListener("submit", submitAddForm);
 
-//////////// Creating Cards Function \\\\\\\\\\\\
-
-const cardImageOverlay = document.querySelector(".modal-preview");
-const cardImagePreview = document.querySelector(".modal-preview__image");
-const cardImagePreviewTitle = document.querySelector(".modal-preview__title");
-
-function createCard(item) {
-  const card = document.importNode(elementsItem, true);
-  const modalPreviewImage = card.querySelector(".element__image");
-
-  card.querySelector(".element__title").textContent = item.name;
-  modalPreviewImage.alt = item.name;
-  modalPreviewImage.src = item.link;
-
-  modalPreviewImage.addEventListener("click", function () {
-    openModal(cardImageOverlay);
-    cardImagePreview.src = modalPreviewImage.src;
-    cardImagePreview.alt = modalPreviewImage.alt;
-    cardImagePreviewTitle.textContent = modalPreviewImage.alt;
-  });
-
-  const cardLikeButton = card.querySelector(".element__like-button");
-  const cardRemoveButton = card.querySelector(".element__remove-button");
-
-  cardLikeButton.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle("element__like-button_not-active");
-  });
-
-  cardRemoveButton.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.closest(".elements__item").remove();
-  });
-
-  return card;
-}
-
-function renderCard(newCard, item) {
-  newCard = createCard(item);
-  cardsContainer.prepend(newCard);
-}
-
 //////////// Initial Cards Creating \\\\\\\\\\\\
 
 initialCards.forEach((item) => {
-  renderCard(elementsItem, item);
+  const card = new Card(item.link, item.name);
+  cardsContainer.prepend(card.renderCard(cardTemplate));
 });
