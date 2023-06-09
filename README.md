@@ -16,4 +16,4 @@ Photo app to post, share and like photos.
 
 **Website**
 
-- [Link to completed project](https://kamal-ganiev.github.io/web_project_4/)
+- [Link to completed project](https://kamal-ganiev.github.io/aroundtheus_demo/)
